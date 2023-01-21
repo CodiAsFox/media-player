@@ -1,0 +1,19 @@
+.player {
+  &--main {
+    margin-top: 7.2rem;
+    display: flex;
+  }
+
+  &--current {
+    padding: 0 2.5rem;
+    flex: 55%;
+
+    img {
+      width: 50rem;
+    }
+  }
+
+  &--playlist {
+    flex: 45%;
+  }
+}

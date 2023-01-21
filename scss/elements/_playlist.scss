@@ -1,0 +1,35 @@
+.music-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  .track {
+    display: flex;
+    align-items: center;
+
+    margin: 0 auto 15px;
+
+    &-- {
+      &info {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 25px;
+        align-items: center;
+      }
+
+      &metadata {
+        p {
+          margin-bottom: 0;
+        }
+      }
+
+      &thumb {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+}
