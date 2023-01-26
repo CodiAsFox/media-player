@@ -11,7 +11,9 @@
     background-color: #e8e8e8;
     align-content: center;
     position: relative;
-    background: url(./../img/trustfall-banner.jpg) repeat 0 0;
+    // background-image: ;
+    background-repeat: repeat;
+    background-position: 0 0;
     animation: bg-scrolling 30s infinite alternate;
     animation-timing-function: linear;
 

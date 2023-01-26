@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>madTunes</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' *.googleapis.com *.typekit.net *.gstatic.com;
+    font-src *.googleapis.com *.typekit.net *.gstatic.com" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/iuc6wkw.css">
+    <script src="./js/utils.js" type="module"></script>
+    <script src="./js/app.js" type="module"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+</head>
+
+<body>
+    <header class="skip-links">
+        <a href="#playlist">Skip to playlist</a>
+        <a href="#controls">Skip to music controls</a>
+    </header>
+    <main class="player--main">
+        <div class="player--current">
+
+            <div class="inner">
+                <div class="gradient--border img--container">
+                    <img class="" src="./img/trustfall-w800.jpg" alt="Pink - Trustfall album">
+                </div>
+                <button id="btnShuffle" title="Shuffle" class="btn btn-shuffle"><i
+                        class="material-symbols-rounded">shuffle</i></button>
+            </div>
+        </div>
+        <div id="playlist" class="player--playlist">
+            <div class="main-nav">
+                <h1 class="logo"><img src="./img/logo.svg" alt="Flame Logo"> madTunes</h1>
+            </div>
+            <ol class="music-list">
+                <li class="track playing" data-track="never-gonna-not-dance-again" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/trustfall-w100.jpg" alt="Trustfall album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Never Gonna Not Dance Again</p>
+                            <div class="track--record">
+                                <p class="track--artist">Pink</p>
+                                <p class="track--album"><span class="text-uppercase">Trustfall</span></p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">3:46</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="wolves" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/wolves-w100.jpg" alt="Wolves album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Wolves</p>
+                            <div class="track--record">
+                                <p class="track--artist">Selena Gomez & Marshmello</p>
+                                <p class="track--album">Wolves (Single)</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">3:18</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="razy-rolling" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/moulin-rouge-w100.jpg" alt="Moulin Rouge! The Musical album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Crazy Rolling</p>
+                            <div class="track--record">
+                                <p class="track--artist">Original Broadway Cast Of Moulin Rouge! The Musical</p>
+                                <p class="track--album">Moulin Rouge! The Musical</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">5:14</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="little-talks" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/little-talks-w100.jpg" alt="Of Monsters and Men album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Little Talks</p>
+                            <div class="track--record">
+                                <p class="track--artist">Of Monsters and Men</p>
+                                <p class="track--album">My Head Is an Animal</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">4:20</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="lines" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/lines-w100.jpg"
+                            alt="Lines: Music for Waiting in Queues or Learning About Them album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Lines</p>
+                            <div class="track--record">
+                                <p class="track--artist">Defunctland</p>
+                                <p class="track--album">Lines: Music for Waiting in Queues or Learning About Them</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">2:00</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="blow-me" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/the-truth-about-love-w100.jpg" alt="The Truth About Love album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Blow Me (One last kiss)</p>
+                            <div class="track--record">
+                                <p class="track--artist">P!nk</p>
+                                <p class="track--album">The Truth About Love</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">4:15</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="happy-music" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/happy-music-w100.jpg" alt="Happy Music album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Happy Music</p>
+                            <div class="track--record">
+                                <p class="track--artist">Supershy & Tom Misch</p>
+                                <p class="track--album">Happy Music (Single)</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">3:56</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="mr-fear" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/mr-fear-w100.jpg" alt="Mr. Fear album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Mr. Fear</p>
+                            <div class="track--record">
+                                <p class="track--artist"><span class="text-uppercase">Siames</span></p>
+                                <p class="track--album">Bounce Into The Music</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">4:07</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="trustfall" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/trustfall-w100.jpg" alt="Trustfall album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title"><span class="text-uppercase">Trustfall</span></p>
+                            <div class="track--record">
+                                <p class="track--artist">Pink</p>
+                                <p class="track--album"><span class="text-uppercase">Trustfall</span></p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">0:00</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="track" data-track="stompa" tabindex="0">
+                    <div class="track--thumb">
+                        <img src="./img/harmony-w100.jpg" alt="Harmony album art">
+                    </div>
+                    <div class="track--info">
+                        <div class="track--metadata">
+                            <p class="track--title">Stompa</p>
+                            <div class="track--record">
+                                <p class="track--artist">Serena Ryder</p>
+                                <p class="track--album">Harmony</p>
+                            </div>
+                        </div>
+                        <div class="track--runtime">
+                            <p class="track--time">3:05</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </main>
+    <footer class="player-footer">
+        <section class="progress">
+            <div class="played"></div>
+        </section>
+        <div class="footer-container">
+            <div id="controls" class="controls">
+                <button id="btnPrev" title="Previous track" class="btn"><i
+                        class="material-symbols-rounded">skip_previous</i></button>
+                <!-- <button id="btnPlay" title="Play" class="btn"><i
+                        class="material-symbols-rounded">play_arrow</i></button> -->
+                <button id="btnPlay" title="Pause" class="btn"><i class="material-symbols-rounded">pause</i></button>
+                <button id="btnNext" title="Next track" class="btn"><i
+                        class="material-symbols-rounded">skip_next</i></button>
+            </div>
+            <div class="times">
+                <time datetime="" class="current-time">02:25</time>&nbsp;|&nbsp;
+                <time datetime="" class="total-time">03:46</time>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
