@@ -1,19 +1,86 @@
 .player {
   &--main {
-    margin-top: 7.2rem;
-    display: flex;
+    @media screen and (min-width: 60rem) {
+      display: flex;
+      height: 100vh;
+    }
   }
 
   &--current {
-    padding: 0 2.5rem;
-    flex: 55%;
+    // flex: 65%;
+    background-color: #e8e8e8;
+    align-content: center;
+    position: relative;
+    background: url(../../img/trustfall-banner.png) repeat 0 0;
+    animation: bg-scrolling 30s infinite alternate;
+    animation-timing-function: linear;
+
+    @media screen and (min-width: 60rem) {
+      display: flex;
+      flex: 50%;
+
+      padding-bottom: 2.8125rem;
+    }
+
+    @media screen and (min-width: 67rem) {
+      flex: 65%;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+      background: rgba(80, 80, 80, 0.45);
+      box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(0.9125rem);
+      -webkit-backdrop-filter: blur(0.9125rem);
+    }
+
+    .inner {
+      z-index: 1;
+      max-width: 20rem;
+      margin: auto;
+      padding-top: 7rem;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+
+      @media screen and (min-width: 60rem) {
+        padding-top: 0;
+        max-width: 30rem;
+      }
+
+      @media screen and (min-width: 67rem) {
+        max-width: 40rem;
+      }
+    }
 
     img {
-      width: 50rem;
+      box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2.25rem 0,
+        rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
+      margin: auto;
+
+      @media screen and (min-width: 60rem) {
+        max-width: 25rem;
+      }
+
+      @media screen and (min-width: 67rem) {
+        max-width: 35rem;
+      }
     }
   }
 
   &--playlist {
-    flex: 45%;
+    position: relative;
+
+    @media screen and (min-width: 60rem) {
+      flex: 50%;
+    }
+
+    @media screen and (min-width: 67rem) {
+      flex: 35%;
+    }
   }
 }

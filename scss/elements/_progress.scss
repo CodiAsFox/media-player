@@ -1,0 +1,22 @@
+.progress {
+  background: var(--progress);
+  width: 40%;
+  height: 0.1875rem;
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+
+  .played {
+    &::after {
+      content: "";
+      width: 0.625rem;
+      height: 0.625rem;
+      background-color: var(--progress);
+      display: inline-block;
+      position: absolute;
+      right: -0.125rem;
+      top: -0.25rem;
+      border-radius: 50%;
+    }
+  }
+}

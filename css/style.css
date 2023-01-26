@@ -1,10 +1,15 @@
 :root {
-  --badge-color: #7b4b91;
+  --badge-color:
   --white: #fff;
   --light: #f6f6f6;
   --black: #000;
   --dark: #333;
-  --body-bg: #f6f6f6;
+  --body-bg: #2d2d2d;
+  --separator: #443c3c;
+  --accent: #7b4b91;
+  --text: #f6f6f6;
+  --playing: #1e1e1e;
+  --progress: rgb(233, 233, 233);
 }
 
 /* Box sizing rules */
@@ -12,6 +17,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  color: var(--text);
 }
 
 /* Set core root defaults */
@@ -29,6 +35,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   margin: 0;
+  background-color: var(--body-bg);
 }
 
 /* Update default margin */
@@ -205,6 +212,31 @@ h6 {
     font-size: 1.25rem;
   }
 }
+.btn {
+  color: var(--light);
+  background: none;
+  padding: 15px;
+  border: 1px solid var(--light);
+  border-radius: 50%;
+  line-height: 1;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+  transition: background 300ms ease-in-out;
+}
+.btn:hover {
+  background-color: rgba(24, 9, 56, 0.68);
+}
+.btn-shuffle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
 *:focus-visible {
   outline: 0.125rem solid var(--color-secondary);
   outline-offset: 0.125rem;
@@ -251,69 +283,278 @@ h6 {
 }
 
 .main-nav {
-  background: rgba(255, 255, 255, 0.29);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(7.4px);
-          backdrop-filter: blur(7.4px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: var(--body-bg);
   position: fixed;
-  width: 100%;
   top: 0;
   left: 0;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid rgb(219, 219, 219);
+  width: 100%;
+  padding: 0.625rem 0 1.25rem;
+  z-index: 1;
+}
+@media screen and (min-width: 60rem) {
+  .main-nav {
+    background: rgba(61, 61, 61, 0.2);
+    box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(0.3125rem);
+            backdrop-filter: blur(0.3125rem);
+    border: 0.0625rem solid rgba(61, 61, 61, 0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 .main-nav .logo {
-  color: var(--dark);
+  color: var(--light);
   font-weight: 600;
-  font-size: 32px;
-  margin: 0;
+  font-size: 2rem;
   display: flex;
   align-items: end;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
 }
 .main-nav .logo img {
   max-height: 3.125rem;
   padding-right: 0.625rem;
 }
 
-.player--main {
-  margin-top: 7.2rem;
-  display: flex;
+@media screen and (min-width: 60rem) {
+  .player--main {
+    display: flex;
+    height: 100vh;
+  }
 }
 .player--current {
-  padding: 0 2.5rem;
-  flex: 55%;
+  background-color: #e8e8e8;
+  align-content: center;
+  position: relative;
+  background: url(../../img/trustfall-banner.png) repeat 0 0;
+  -webkit-animation: bg-scrolling 30s infinite alternate;
+          animation: bg-scrolling 30s infinite alternate;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+@media screen and (min-width: 60rem) {
+  .player--current {
+    display: flex;
+    flex: 50%;
+    padding-bottom: 2.8125rem;
+  }
+}
+@media screen and (min-width: 67rem) {
+  .player--current {
+    flex: 65%;
+  }
+}
+.player--current::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  background: rgba(80, 80, 80, 0.45);
+  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.9125rem);
+  -webkit-backdrop-filter: blur(0.9125rem);
+}
+.player--current .inner {
+  z-index: 1;
+  max-width: 20rem;
+  margin: auto;
+  padding-top: 7rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 60rem) {
+  .player--current .inner {
+    padding-top: 0;
+    max-width: 30rem;
+  }
+}
+@media screen and (min-width: 67rem) {
+  .player--current .inner {
+    max-width: 40rem;
+  }
 }
 .player--current img {
-  width: 50rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2.25rem 0, rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
+  margin: auto;
+}
+@media screen and (min-width: 60rem) {
+  .player--current img {
+    max-width: 25rem;
+  }
+}
+@media screen and (min-width: 67rem) {
+  .player--current img {
+    max-width: 35rem;
+  }
 }
 .player--playlist {
-  flex: 45%;
+  position: relative;
+}
+@media screen and (min-width: 60rem) {
+  .player--playlist {
+    flex: 50%;
+  }
+}
+@media screen and (min-width: 67rem) {
+  .player--playlist {
+    flex: 35%;
+  }
 }
 
 .music-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  padding-bottom: 5.1rem;
+}
+@media screen and (min-width: 60rem) {
+  .music-list {
+    padding: 5.1rem 0 5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  .music-list::-webkit-scrollbar {
+    display: none;
+  }
 }
 .music-list .track {
   display: flex;
   align-items: center;
-  margin: 0 auto 15px;
+  padding: 0.3125rem 2.5rem;
+  border-bottom: 0.125rem solid var(--separator);
+  transition: background 400ms ease-in-out;
+  background-color: var(--body-bg);
+}
+.music-list .track:hover {
+  background: var(--playing);
+  cursor: pointer;
+}
+.music-list .track.playing {
+  background-color: var(--playing);
+  position: relative;
+}
+.music-list .track.playing::after {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.3125rem;
+  height: 100%;
+  background: linear-gradient(60deg, hsla(224deg, 85%, 66%, 0.757), hsla(269deg, 85%, 66%, 0.757), hsla(314deg, 85%, 66%, 0.757), hsla(179deg, 85%, 66%, 0.757), hsla(218deg, 85%, 66%, 0.757), hsla(126deg, 85%, 66%, 0.757));
+  background-size: 500% 500%;
+  background-position: 0 50%;
+  border-radius: 0;
+  -webkit-animation: border-gradient 3s alternate infinite;
+          animation: border-gradient 3s alternate infinite;
+}
+.music-list .track:last-child {
+  border-bottom: none;
 }
 .music-list .track--info {
   flex: 1;
   display: flex;
   justify-content: space-between;
-  padding: 10px 25px;
+  padding: 0.625rem 0.625rem;
   align-items: center;
+}
+.music-list .track--title {
+  font-weight: 700;
+}
+.music-list .track--artist, .music-list .track--album {
+  display: inline-block;
+}
+.music-list .track--album {
+  font-weight: 300;
+}
+.music-list .track--artist {
+  font-weight: 500;
 }
 .music-list .track--metadata p {
   margin-bottom: 0;
 }
 .music-list .track--thumb img {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
+}
+
+.playing--metadata {
+  padding-top: 1rem;
+}
+.playing--title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--white);
+  text-shadow: 0.0625rem 0.0625rem 0.125rem var(--black);
+}
+
+.gradient--border {
+  position: relative;
+  border-radius: 0.32rem;
+}
+.gradient--border::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: -0.32rem;
+  left: -0.32rem;
+  width: calc(100% + 0.64rem);
+  height: calc(100% + 0.64rem);
+  background: linear-gradient(60deg, hsla(224deg, 85%, 66%, 0.757), hsla(269deg, 85%, 66%, 0.757), hsla(314deg, 85%, 66%, 0.757), hsla(179deg, 85%, 66%, 0.757));
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: 0.64rem;
+  -webkit-animation: border-gradient 6s alternate infinite;
+          animation: border-gradient 6s alternate infinite;
+}
+
+@-webkit-keyframes border-gradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes border-gradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 150rem 1rem;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 150rem 1rem;
+  }
+}
+.progress {
+  background: var(--progress);
+  width: 40%;
+  height: 0.1875rem;
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+}
+.progress .played::after {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--progress);
+  display: inline-block;
+  position: absolute;
+  right: -0.125rem;
+  top: -0.25rem;
+  border-radius: 50%;
 }
 
 .player-footer {
@@ -322,11 +563,11 @@ h6 {
   background-color: var(--light);
   bottom: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(61, 61, 61, 0.7);
+  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.7063rem);
+  -webkit-backdrop-filter: blur(0.7063rem);
+  border: 0.0625rem solid rgba(61, 61, 61, 0.84);
 }
 .player-footer .footer-container {
   padding: 1.25rem 2.5rem;

@@ -1,0 +1,39 @@
+.gradient--border {
+  $border: 0.32rem;
+
+  position: relative;
+  border-radius: $border;
+
+  &::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: calc(-1 * $border);
+    left: calc(-1 * $border);
+    width: calc(100% + $border * 2);
+    height: calc(100% + $border * 2);
+    background: linear-gradient(
+      60deg,
+      hsla(224, 85%, 66%, 0.757),
+      hsla(269, 85%, 66%, 0.757),
+      hsla(314, 85%, 66%, 0.757),
+      hsla(179, 85%, 66%, 0.757)
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * $border);
+    animation: border-gradient 6s alternate infinite;
+  }
+}
+
+@keyframes border-gradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bg-scrolling {
+  0% {
+    background-position: 150rem 1rem;
+  }
+}

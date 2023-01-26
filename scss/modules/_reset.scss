@@ -3,6 +3,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  color: var(--text);
 }
 
 /* Set core root defaults */
@@ -21,6 +22,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   margin: 0;
+  background-color: var(--body-bg);
 }
 
 /* Update default margin */

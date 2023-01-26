@@ -2,20 +2,87 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  padding-bottom: 5.1rem;
+
+  @media screen and (min-width: 60rem) {
+    padding: 5.1rem 0 5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    height: 100vh;
+  }
 
   .track {
     display: flex;
     align-items: center;
+    padding: 0.3125rem 2.5rem;
+    border-bottom: 0.125rem solid var(--separator);
+    transition: background 400ms ease-in-out;
+    background-color: var(--body-bg);
 
-    margin: 0 auto 15px;
+    &:hover {
+      background: var(--playing);
+      cursor: pointer;
+    }
+
+    &.playing {
+      background-color: var(--playing);
+      position: relative;
+
+      &::after {
+        content: "";
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0.3125rem;
+        height: 100%;
+        background: linear-gradient(
+          60deg,
+          hsla(224, 85%, 66%, 0.757),
+          hsla(269, 85%, 66%, 0.757),
+          hsla(314, 85%, 66%, 0.757),
+          hsla(179, 85%, 66%, 0.757),
+          hsla(218, 85%, 66%, 0.757),
+          hsla(126, 85%, 66%, 0.757)
+        );
+        background-size: 500% 500%;
+        background-position: 0 50%;
+        border-radius: 0;
+        animation: border-gradient 3s alternate infinite;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
 
     &-- {
       &info {
         flex: 1;
         display: flex;
         justify-content: space-between;
-        padding: 10px 25px;
+        padding: 0.625rem 0.625rem;
         align-items: center;
+      }
+
+      &title {
+        font-weight: 700;
+      }
+
+      &artist,
+      &album {
+        display: inline-block;
+      }
+
+      &album {
+        font-weight: 300;
+      }
+
+      &artist {
+        font-weight: 500;
       }
 
       &metadata {
@@ -26,8 +93,8 @@
 
       &thumb {
         img {
-          width: 100px;
-          height: 100px;
+          width: 6.25rem;
+          height: 6.25rem;
         }
       }
     }

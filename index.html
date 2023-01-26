@@ -19,17 +19,25 @@
 </head>
 
 <body>
-    <header class="main-nav">
-        <div class="container-fluid">
-            <h1 class="logo"><img src="./img/logo.svg" alt="Flame Logo"> madTunes</h1>
-        </div>
+    <header class="skip-links">
+        <a href="#playlist">Skip to playlist</a>
+        <a href="#controls">Skip to music controls</a>
     </header>
     <main class="player--main">
         <div class="player--current">
-            <img src="./img/trustfall-w800.jpg" alt="Pink - Trustfall album">
-            <button id="btnShuffle" title="shuffle"><i class="material-symbols-rounded">shuffle</i></button>
+
+            <div class="inner">
+                <div class="gradient--border img--container">
+                    <img class="" src="./img/trustfall-w800.jpg" alt="Pink - Trustfall album">
+                </div>
+                <button id="btnShuffle" title="shuffle" class="btn btn-shuffle"><i
+                        class="material-symbols-rounded">shuffle</i></button>
+            </div>
         </div>
-        <div class="player--playlist">
+        <div id="playlist" class="player--playlist">
+            <div class="main-nav">
+                <h1 class="logo"><img src="./img/logo.svg" alt="Flame Logo"> madTunes</h1>
+            </div>
             <ol class="music-list">
                 <li class="track playing">
                     <div class="track--thumb">
@@ -42,7 +50,7 @@
                             <p class="track--album">TRUSTFALL</p>
                         </div>
                         <div class="track--runtime">
-                            <p class="track--time">0:00</p>
+                            <p class="track--time">3:46</p>
                         </div>
                     </div>
                 </li>
@@ -189,15 +197,17 @@
             <div class="played"></div>
         </section>
         <div class="footer-container">
-            <div class="controls">
-                <button id="btnPrev" title="previous track"><i
+            <div id="controls" class="controls">
+                <button id="btnPrev" title="previous track" class="btn"><i
                         class="material-symbols-rounded">skip_previous</i></button>
-                <button id="btnPlay" title="play | pause"><i class="material-symbols-rounded">play_arrow</i></button>
-                <button id="btnNext" title="next track"><i class="material-symbols-rounded">skip_next</i></button>
+                <button id="btnPlay" title="play | pause" class="btn"><i
+                        class="material-symbols-rounded">play_arrow</i></button>
+                <button id="btnNext" title="next track" class="btn"><i
+                        class="material-symbols-rounded">skip_next</i></button>
             </div>
             <div class="times">
-                <time datetime="" class="current-time">00:00</time> &nbsp;|&nbsp;
-                <time datetime="" class="total-time">00:00</time>
+                <time datetime="" class="current-time">02:25</time>&nbsp;|&nbsp;
+                <time datetime="" class="total-time">03:46</time>
             </div>
         </div>
     </footer>

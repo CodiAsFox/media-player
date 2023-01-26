@@ -1,0 +1,14 @@
+.playing {
+  &--metadata {
+    padding-top: 1rem;
+  }
+
+  &--title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+
+    color: var(--white);
+    text-shadow: 0.0625rem 0.0625rem 0.125rem var(--black);
+  }
+}
