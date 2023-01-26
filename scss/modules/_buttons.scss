@@ -10,7 +10,8 @@
   cursor: pointer;
   transition: background 300ms ease-in-out;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background-color: rgba(24, 9, 56, 0.68);
   }
 

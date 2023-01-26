@@ -1,6 +1,6 @@
 *:focus-visible {
-  outline: 0.125rem solid var(--color-secondary);
-  outline-offset: 0.125rem;
+  outline: 0.1875rem double var(--color-primary);
+  outline-offset: 0.0625rem;
 }
 
 .skip-links {
@@ -16,9 +16,9 @@
   z-index: 100000;
   display: inline-block;
   padding: 0.55em 1.5em 0.5em;
-  background-color: var(--color-secondary);
-  border: 0.125rem solid var(--color-secondary);
-  color: #000;
+  background-color: var(--color-primary);
+  border: 0.125rem solid var(--color-primary);
+  color: var(--light);
   border-radius: 0.25em;
 
   /* link necessary styles */

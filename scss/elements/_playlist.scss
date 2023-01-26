@@ -2,10 +2,10 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-bottom: 5.1rem;
+  padding-bottom: 5.5rem;
 
   @media screen and (min-width: 60rem) {
-    padding: 5.1rem 0 5rem;
+    padding: 5.5rem 0 6rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll;
@@ -23,9 +23,14 @@
     transition: background 400ms ease-in-out;
     background-color: var(--body-bg);
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background: var(--playing);
       cursor: pointer;
+
+      .track--record {
+        animation: marquee 10s ease-in-out infinite;
+      }
     }
 
     &.playing {
@@ -72,23 +77,44 @@
         font-weight: 700;
       }
 
-      &artist,
-      &album {
-        display: inline-block;
+      &metadata {
+        height: 50px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        p {
+          margin-bottom: 0;
+        }
+        .track--record {
+          display: block;
+          width: 200%;
+          height: 30px;
+
+          position: absolute;
+          overflow: hidden;
+
+          animation: marquee 10s ease-in-out infinite;
+
+          @media screen and (min-width: 40rem) {
+            animation: unset;
+          }
+
+          p {
+            float: left;
+            width: fit-content;
+            padding-right: 10px;
+          }
+        }
       }
 
       &album {
         font-weight: 300;
+        font-size: 13px;
       }
 
       &artist {
         font-weight: 500;
-      }
-
-      &metadata {
-        p {
-          margin-bottom: 0;
-        }
+        font-size: 15px;
       }
 
       &thumb {

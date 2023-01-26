@@ -65,11 +65,11 @@ const MEDIA = [
   },
   {
     artist: "Pink",
-    title: "Ave Mary A",
-    track: "ave-mary-a.mp3",
-    album: "Funhouse",
-    thumbnail: "funhouse-w100.jpg",
-    large: "funhouse-w800.jpg",
+    title: "TRUSTFALL",
+    track: "trustfall.mp3",
+    album: "TRUSTFALL",
+    thumbnail: "trustfall-w100.jpg",
+    large: "trustfall-w800.png",
   },
   {
     artist: "Serena Ryder",

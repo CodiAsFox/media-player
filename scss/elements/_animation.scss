@@ -34,6 +34,15 @@
 
 @keyframes bg-scrolling {
   0% {
-    background-position: 150rem 1rem;
+    background-position: 150rem 7rem;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
   }
 }
