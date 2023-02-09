@@ -7,25 +7,76 @@
   }
 
   &--current {
-    // flex: 65%;
     background-color: #e8e8e8;
     align-content: center;
     position: relative;
-    // background-image: ;
+    background-repeat: repeat;
+    background-position: 0 0;
+    // background: url(./../img/trustfall-banner.jpg) repeat 0 0;
     background-repeat: repeat;
     background-position: 0 0;
     animation: bg-scrolling 30s infinite alternate;
     animation-timing-function: linear;
 
+    .inner {
+      z-index: 1;
+      max-width: 20rem;
+      margin: auto;
+      padding-top: 7rem;
+      align-items: center;
+      // display: none;
+      flex-direction: column;
+
+      img {
+        // display: none;
+      }
+
+      @media screen and (min-width: 60rem) {
+        padding-top: 0;
+        max-width: 30rem;
+      }
+
+      @media screen and (min-width: 67rem) {
+        max-width: 40rem;
+      }
+      // .btn-shuffle {
+      //   display: none;
+      // }
+
+      // .gradient--border {
+      //   &::after {
+      //     background: transparent;
+      //   }
+      // }
+    }
+
+    &:not(.playing) {
+      .btn-shuffle {
+        display: none;
+      }
+      .gradient--border {
+        &::after {
+          background: transparent;
+        }
+      }
+    }
+
+    // &.expanded {
+    // animation: expand 2s ease-out;
     @media screen and (min-width: 60rem) {
       display: flex;
       flex: 50%;
-
       padding-bottom: 2.8125rem;
     }
-
     @media screen and (min-width: 67rem) {
-      flex: 65%;
+      flex: 60%;
+    }
+    .inner {
+      display: flex;
+      img {
+        // display: unset;
+      }
+      // }
     }
 
     &::before {
@@ -38,25 +89,6 @@
       box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(0.9125rem);
       -webkit-backdrop-filter: blur(0.9125rem);
-    }
-
-    .inner {
-      z-index: 1;
-      max-width: 20rem;
-      margin: auto;
-      padding-top: 7rem;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-
-      @media screen and (min-width: 60rem) {
-        padding-top: 0;
-        max-width: 30rem;
-      }
-
-      @media screen and (min-width: 67rem) {
-        max-width: 40rem;
-      }
     }
 
     img {

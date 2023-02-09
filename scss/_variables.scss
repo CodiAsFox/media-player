@@ -1,15 +1,28 @@
+$colours: (
+  "white": #fff,
+  "light": #f6f6f6,
+  "black": #000,
+  "dark": #333,
+  "body-bg": #2d2d2d,
+  "separator": #443c3c,
+  "accent": #7b4b91,
+  "text": #f6f6f6,
+  "playing": #1e1e1e,
+  "progress": rgb(233, 233, 233),
+  "color-primary": rgb(147, 15, 224),
+  "color-primary-dark": rgb(95, 11, 143),
+  "linear-bg":
+    linear-gradient(
+      60deg,
+      hsla(224, 85%, 66%, 0.757),
+      hsla(269, 85%, 66%, 0.757),
+      hsla(314, 85%, 66%, 0.757),
+      hsla(179, 85%, 66%, 0.757)
+    ),
+);
+
 :root {
-  --badge-color: 
-  --white: #fff;
-  --light: #f6f6f6;
-  --black: #000;
-  --dark: #333;
-  --body-bg: #2d2d2d;
-  --separator: #443c3c;
-  --accent: #7b4b91;
-  --text: #f6f6f6;
-  --playing: #1e1e1e;
-  --progress: rgb(233, 233, 233);
-  --color-primary: rgb(147, 15, 224);
-  --color-primary-dark: rgb(95, 11, 143);
+  @each $key, $colour in $colours {
+    --#{$key}: #{$colour};
+  }
 }

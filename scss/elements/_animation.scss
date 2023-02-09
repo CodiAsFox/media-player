@@ -46,3 +46,27 @@
     left: -100%;
   }
 }
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes expand {
+  0% {
+    flex: 0;
+  }
+  100% {
+    flex: 65%;
+    @media screen and (min-width: 60rem) {
+      flex: 50%;
+    }
+    @media screen and (min-width: 67rem) {
+      flex: 65%;
+    }
+  }
+}

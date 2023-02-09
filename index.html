@@ -6,41 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>madTunes</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+
+    img-src 'self';
+    media-src 'self';
+
     script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline' *.googleapis.com *.typekit.net *.gstatic.com;
-    font-src *.googleapis.com *.typekit.net *.gstatic.com" />
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://use.typekit.net/iuc6wkw.css">
-    <script src="./js/utils.js" type="module"></script>
+    style-src 'self' 'unsafe-inline' *.googleapis.com *.typekit.net;
+    font-src *.typekit.net *.gstatic.com" />
+
+    <script src="./js/utils.js"></script>
     <script src="./js/app.js" type="module"></script>
+
+    <link rel="stylesheet" href="https://use.typekit.net/iuc6wkw.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600,0,0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./favicon/favicon.ico">
+
 </head>
 
 <body>
-    <header class="skip-links">
-        <a href="#playlist">Skip to playlist</a>
-        <a href="#controls">Skip to music controls</a>
+    <header>
+        <div class="skip-links">
+            <a href="#playlist">Skip to playlist</a>
+            <a href="#controls">Skip to music controls</a>
+        </div>
+        <div class="main-nav">
+            <div class="container">
+                <h1 class="logo"><img src="./img/logo.svg" alt="Flame Logo"> madTunes<span class="sub-title">Web
+                        Player</span></h1>
+            </div>
+        </div>
+        <div class="album-artwork"></div>
     </header>
+    <div class="system-messages"></div>
     <main class="player--main">
-        <div class="player--current" stylez="background-image: url(./../img/trustfall-banner.jpg);">
+        <div id="playerView" class="player--current" style="background: url(./../img/trustfall-banner.jpg);">
             <div class="inner">
                 <div class="gradient--border img--container">
+                    <span class="loader"></span>
                 </div>
                 <button id="btnShuffle" title="Shuffle" class="btn btn-shuffle"><i
                         class="material-symbols-rounded">shuffle</i></button>
             </div>
         </div>
-        <div id="playlist" class="player--playlist">
-            <div class="main-nav">
-                <h1 class="logo"><img src="./img/logo.svg" alt="Flame Logo"> madTunes</h1>
-            </div>
-            <ol class="music-list"></ol>
+        <div class="player--playlist">
+            <ol id="playlist" class="music-list"><span class="loader"></span></ol>
         </div>
     </main>
     <footer class="player-footer">
@@ -49,11 +63,12 @@
         </section>
         <div class="footer-container">
             <div id="controls" class="controls">
-                <button id="btnPrev" title="Previous track" class="btn"><i
+                <button id="btnPrev" title="Previous track" class="btn "><i
                         class="material-symbols-rounded">skip_previous</i></button>
-                <!-- <button id="btnPlay" title="Play" class="btn"><i
-                        class="material-symbols-rounded">play_arrow</i></button> -->
-                <button id="btnPlay" title="Pause" class="btn"><i class="material-symbols-rounded">pause</i></button>
+                <button id="btnPlay" title="Play" class="btn player-controls__play"><i
+                        class="material-symbols-rounded">play_arrow</i></button>
+                <button id="btnPlay" title="Pause" class="btn player-controls__pause"><i
+                        class="material-symbols-rounded">pause</i></button>
                 <button id="btnNext" title="Next track" class="btn"><i
                         class="material-symbols-rounded">skip_next</i></button>
             </div>
