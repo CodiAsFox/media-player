@@ -7,35 +7,16 @@
   }
 
   &--current {
-    // flex: 65%;
-    background-color: #e8e8e8;
+    background-color: var(--dark);
     align-content: center;
     position: relative;
-    background: url(./../img/trustfall-banner.jpg) repeat 0 0;
-    animation: bg-scrolling 30s infinite alternate;
-    animation-timing-function: linear;
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-position: 0 0;
 
-    @media screen and (min-width: 60rem) {
-      display: flex;
-      flex: 50%;
-
-      padding-bottom: 2.8125rem;
-    }
-
-    @media screen and (min-width: 67rem) {
-      flex: 65%;
-    }
-
-    &::before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      z-index: 0;
-      background: rgba(80, 80, 80, 0.45);
-      box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(0.9125rem);
-      -webkit-backdrop-filter: blur(0.9125rem);
+    &.playing {
+      animation: bg-scrolling 45s infinite alternate;
     }
 
     .inner {
@@ -44,7 +25,6 @@
       margin: auto;
       padding-top: 7rem;
       align-items: center;
-      display: flex;
       flex-direction: column;
 
       @media screen and (min-width: 60rem) {
@@ -57,9 +37,41 @@
       }
     }
 
+    &:not(.playing) {
+      .gradient--border {
+        &::after {
+          background: transparent;
+        }
+      }
+    }
+
+    @media screen and (min-width: 60rem) {
+      display: flex;
+      flex: 50%;
+      padding-bottom: 2.8125rem;
+    }
+    @media screen and (min-width: 67rem) {
+      flex: 60%;
+    }
+    .inner {
+      display: flex;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+      background: transparentize($dark, 0.55);
+      box-shadow: 0 0.25rem 1.875rem transparentize($black, 0.9);
+      backdrop-filter: blur(0.9125rem);
+      -webkit-backdrop-filter: blur(0.9125rem);
+    }
+
     img {
-      box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2.25rem 0,
-        rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
+      box-shadow: transparentize($black, 0.84) 0 0.625rem 2.25rem 0,
+        transparentize($black, 0.94) 0 0 0 0.0625rem;
       margin: auto;
 
       @media screen and (min-width: 60rem) {
@@ -74,6 +86,10 @@
 
   &--playlist {
     position: relative;
+
+    .track--time {
+      position: relative;
+    }
 
     @media screen and (min-width: 60rem) {
       flex: 50%;

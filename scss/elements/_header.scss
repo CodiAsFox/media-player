@@ -1,19 +1,23 @@
+header {
+  position: relative;
+}
 .main-nav {
   background-color: var(--body-bg);
+  position: absolute;
 
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0.625rem 0 1.25rem;
+  padding: 0.305rem 0 0.95rem;
   z-index: 1;
 
-  @media screen and (min-width: 60rem) {
-    @include glassBackgrounds;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+  @include glassBackgrounds;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
   .logo {
     color: var(--light);
     font-weight: 600;
@@ -21,7 +25,22 @@
     display: flex;
     align-items: end;
     width: fit-content;
+    margin-bottom: 0;
     margin: auto;
+    position: relative;
+    .sub-title {
+      font-size: 1rem;
+      font-weight: 300;
+      position: absolute;
+      bottom: -0.75rem;
+      right: 0;
+    }
+
+    transition: margin 600ms ease-in-out;
+
+    @media screen and (min-width: 60rem) {
+      margin: 0;
+    }
 
     img {
       max-height: 3.125rem;

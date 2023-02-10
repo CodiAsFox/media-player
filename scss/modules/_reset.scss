@@ -51,7 +51,7 @@ ol[role="list"] {
 /* A elements that don't have a class get default styles */
 a {
   text-decoration-skip-ink: auto;
-  color: var(--color-primary-dark);
+  color: var(--colour-primary-dark);
   transition: color 0.2s, background-color 0.2s;
   -webkit-transition: color 0.2s, background-color 0.2s;
   -moz-transition: color 0.2s, background-color 0.2s;
@@ -61,7 +61,7 @@ a {
 
 a:hover,
 a:focus-visible {
-  color: var(--color-primary);
+  color: var(--colour-primary);
 }
 
 /* Make images easier to work with */
