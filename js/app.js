@@ -3,6 +3,7 @@ import MEDIA from "./media.js";
 const APP = {
   audio: new Audio(),
   currentTrack: 0,
+  appName: "madTunes",
   init: () => {
     APP.playerView = document.getElementById("playerView");
     APP.playlist = document.getElementById("playlist");
@@ -154,7 +155,7 @@ const APP = {
   },
   loadCurrentTrack: () => {
     APP.audio.src = `./media/${APP.currentTrack.track}`;
-
+    document.title = `${APP.appName} | Playing ${APP.currentTrack.title} by ${APP.currentTrack.artist}`;
     const albumArt = `<img src="./img/${APP.currentTrack.large}" alt="${APP.currentTrack.title} album">`;
     APP.playerView.querySelector(".img--container").innerHTML = albumArt;
 
