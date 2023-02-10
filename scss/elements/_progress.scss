@@ -1,10 +1,12 @@
 .progress {
   background: var(--progress);
-  width: 40%;
+  width: 0%;
   height: 0.1875rem;
   position: absolute;
   top: -0.125rem;
   left: 0;
+
+  transition: width 200ms ease;
 
   .played {
     &::after {

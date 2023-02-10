@@ -4,8 +4,13 @@
   background-color: var(--light);
   bottom: 0;
   left: 0;
-
+  transition: transform 1200ms ease-in-out;
+  transform: translateY(10rem);
   @include glassBackgrounds;
+
+  &.active {
+    transform: translateY(0);
+  }
 
   .footer-container {
     padding: 1.25rem 2.5rem;

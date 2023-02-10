@@ -1,31 +1,16 @@
-// utils.js
-// export function convertTimeDisplay(seconds) {
-//   let minutes = Math.floor(seconds / 60);
-//   minutes = minutes >= 10 ? minutes : "0" + minutes;
-//   seconds = Math.floor(seconds % 60);
-//   seconds = seconds >= 10 ? seconds : "0" + seconds;
-//   return minutes + ":" + seconds;
-// }
-
 const log = console.log;
 const warn = console.warn;
 const error = console.error;
 const info = console.error;
 
 function errorHandler(ev) {
-  log(ev);
-  // log(ev);
-  // console.log("The start event was triggered");
   displayError(ev.message, ev.type);
 }
 function audioErrorHandler(ev) {
   log(ev.target);
-  // log(ev);
-  // console.log("The start event was triggered");
   displayError("The requested song cannot be played.", ev.type);
 }
-function displayError(msg, type, timeout = 10000000) {
-  // log("aaaa");
+function displayError(msg, type, timeout = 10000) {
   switch (type) {
     case "warn":
       warn(msg);
@@ -58,3 +43,9 @@ function displayError(msg, type, timeout = 10000000) {
     }, timeout + 10);
   }, 10);
 }
+
+const parseHTML = (string) => {
+  const obj = new DOMParser();
+  const domObj = obj.parseFromString(string, "text/html");
+  return domObj.body;
+};

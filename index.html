@@ -44,12 +44,12 @@
     </header>
     <div class="system-messages"></div>
     <main class="player--main">
-        <div id="playerView" class="player--current" style="background: url(./../img/trustfall-banner.jpg);">
+        <div id="playerView" class="player--current">
             <div class="inner">
                 <div class="gradient--border img--container">
                     <span class="loader"></span>
                 </div>
-                <button id="btnShuffle" title="Shuffle" class="btn btn-shuffle"><i
+                <button id="btnShuffle" disabled title="Shuffle" class="btn btn-shuffle"><i
                         class="material-symbols-rounded">shuffle</i></button>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <ol id="playlist" class="music-list"><span class="loader"></span></ol>
         </div>
     </main>
-    <footer class="player-footer">
+    <footer id="player-controls" class="player-footer">
         <section class="progress">
             <div class="played"></div>
         </section>
@@ -65,15 +65,17 @@
             <div id="controls" class="controls">
                 <button id="btnPrev" title="Previous track" class="btn "><i
                         class="material-symbols-rounded">skip_previous</i></button>
-                <button id="btnPlay" title="Play" class="btn player-controls__play"><i
+                <button id="btnPlay" title="Play" disabled class="btn"><i
                         class="material-symbols-rounded">play_arrow</i></button>
-                <button id="btnPlay" title="Pause" class="btn player-controls__pause"><i
+                <button id="btnPause" title="Pause" disabled class="btn"><i
                         class="material-symbols-rounded">pause</i></button>
                 <button id="btnNext" title="Next track" class="btn"><i
                         class="material-symbols-rounded">skip_next</i></button>
             </div>
             <div class="times">
-                <time datetime="" class="current-time">0:00</time>&nbsp;|&nbsp;
+                <!-- <span class="loader small"></span> -->
+                <time datetime="" class="current-time">0:00</time>
+                &nbsp;|&nbsp;
                 <time datetime="" class="total-time">0:00</time>
             </div>
         </div>
