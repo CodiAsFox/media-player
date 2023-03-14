@@ -4,7 +4,7 @@ const APP = {
   audio: new Audio(),
   currentTrack: 0,
   appName: "madTunes",
-  init: async () => {
+  init: () => {
     APP.playerView = document.getElementById("playerView");
     APP.playlist = document.getElementById("playlist");
     APP.playerControls = document.getElementById("player-controls");
