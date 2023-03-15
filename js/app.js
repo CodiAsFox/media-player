@@ -41,7 +41,7 @@ const APP = {
     APP.audio.addEventListener("loadeddata", APP.loadDuration);
     APP.audio.addEventListener("timeupdate", APP.updateTimestamp);
     APP.playlist.addEventListener("click", APP.playSelected);
-    APP.btnPlayPause.addEventListener("click", APP.playPauseBtn);
+    APP.playerControls.addEventListener("click", APP.controls);
   },
   loadDuration: () => {
     let duration = APP.audio.duration;
@@ -92,18 +92,18 @@ const APP = {
   },
   getTrackDuration: ({ track }, index) => {
     const trackObj = new Audio(`./media/${track}`);
-    trackObj.addEventListener("durationchange", (ev) => {
-      const duration = ev.target.duration;
+    trackObj.addEventListener("durationchange", (ev) =>
+      APP.displayTrackDuration(ev, index)
+    );
+  },
+  displayTrackDuration: (ev, index) => {
+    const duration = ev.target.duration;
+    const timeMinutes = APP.convertTimeDisplay(duration);
+    const totalTime = `<time datetime="${duration}" class="total-time">${timeMinutes}</time>`;
 
-      const timeMinutes = APP.convertTimeDisplay(duration);
-      const totalTime = `<time datetime="${duration}" class="total-time">${timeMinutes}</time>`;
-
-      APP.playlist.querySelector(`[data-track="${index}"]`).dataset.runtime =
-        timeMinutes;
-      APP.playlist.querySelector(
-        `[data-track="${index}"] .track--time`
-      ).innerHTML = totalTime;
-    });
+    APP.playlist.querySelector(
+      `[data-track="${index}"] .track--time`
+    ).innerHTML = totalTime;
   },
   loadCurrentTrack: () => {
     let track = MEDIA[APP.currentTrack];
@@ -120,17 +120,31 @@ const APP = {
 
     APP.playerControls.classList.add("active");
     APP.btnPlayPause.disabled = false;
+    APP.playlist
+      .querySelector(`[data-track="${APP.currentTrack}"]`)
+      .scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
   },
-  playPauseBtn: (ev) => {
+  controls: (ev) => {
     const btn = ev.target.closest(".btn");
-    const action = btn.dataset.action;
-    switch (action) {
-      case "play":
-        APP.play();
-        break;
-      case "pause":
-        APP.pause();
-        break;
+    if (btn) {
+      const action = btn.dataset.action;
+      const playing = APP.playlist.querySelector(".playing");
+      playing.classList.remove("playing");
+
+      switch (action) {
+        case "play":
+          APP.play();
+          break;
+        case "pause":
+          APP.pause();
+          break;
+        case "prev":
+          APP.previous();
+          break;
+        case "next":
+          APP.next();
+          break;
+      }
     }
   },
   play: () => {
@@ -142,10 +156,29 @@ const APP = {
   },
   pause: () => {
     APP.audio.pause();
-    APP.playerView.classList.remove("playing");
+
     APP.btnPlayPause.title = "Play";
     APP.btnPlayPause.dataset.action = "play";
     APP.btnPlayPause.querySelector("i").innerHTML = "play_arrow";
+  },
+  previous: () => {
+    if (APP.currentTrack == 0) {
+      APP.currentTrack = MEDIA.length - 1;
+    } else {
+      APP.currentTrack--;
+    }
+
+    APP.loadCurrentTrack();
+    APP.play();
+  },
+  next: () => {
+    if (APP.currentTrack == MEDIA.length - 1) {
+      APP.currentTrack = 0;
+    } else {
+      APP.currentTrack++;
+    }
+    APP.loadCurrentTrack();
+    APP.play();
   },
   convertTimeDisplay: (seconds) => {
     let minutes = Math.floor(seconds / 60);

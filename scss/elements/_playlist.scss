@@ -3,16 +3,19 @@
   margin: 0;
   padding: 0;
   padding-bottom: 5.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 0 15px 0 #1e1d1d;
 
   @media screen and (min-width: 60rem) {
-    padding: 5.5rem 0 6rem;
+    padding: 0rem 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll;
     &::-webkit-scrollbar {
       display: none;
     }
-    height: 100vh;
+    // height: 100vh;
+    height: 84vh;
   }
 
   .track {
@@ -21,7 +24,7 @@
     padding: 0.3125rem 2.5rem;
     border-bottom: 0.125rem solid var(--separator);
     transition: background 400ms ease-in-out;
-    background-color: var(--body-bg);
+    // background-color: var(--body-bg);
 
     &:hover,
     &:focus-visible {

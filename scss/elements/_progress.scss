@@ -1,9 +1,9 @@
 .progress {
   background: var(--progress);
   width: 0%;
-  height: 0.1875rem;
+  height: 0.28rem;
   position: absolute;
-  top: -0.125rem;
+  top: 5px;
   left: 0;
 
   transition: width 200ms ease;

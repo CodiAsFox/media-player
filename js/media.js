@@ -78,7 +78,7 @@ const MEDIA = [
     track: "stompa.mp3",
     thumbnail: "harmony-w100.jpg",
     large: "harmony-w800.jpg",
-    banner: "stompa-banner.jpg",
+    banner: "harmony-banner.jpg",
   },
 ];
 

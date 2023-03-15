@@ -2,18 +2,25 @@
   &--main {
     @media screen and (min-width: 60rem) {
       display: flex;
-      height: 100vh;
+      height: 84vh;
     }
+    margin: 0 1.3rem;
   }
 
   &--current {
-    background-color: var(--dark);
+    background-color: var(--body-bg);
     align-content: center;
     position: relative;
     background-repeat: repeat;
     background-position: 0 0;
     background-repeat: repeat;
     background-position: 0 0;
+
+    // border: 1.25rem solid var(--body-bg);
+
+    margin-right: 1.3rem;
+    border-radius: 10px;
+    // padding-right: 16px;
 
     &.playing {
       animation: bg-scrolling 45s infinite alternate;
@@ -55,18 +62,21 @@
     }
     .inner {
       display: flex;
-    }
 
-    &::before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      z-index: 0;
-      background: transparentize($dark, 0.55);
-      box-shadow: 0 0.25rem 1.875rem transparentize($black, 0.9);
-      backdrop-filter: blur(0.9125rem);
-      -webkit-backdrop-filter: blur(0.9125rem);
+      &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        background: transparentize($dark, 0.55);
+        box-shadow: 0 0.25rem 1.875rem transparentize($black, 0.9);
+        backdrop-filter: blur(0.9125rem);
+        -webkit-backdrop-filter: blur(0.9125rem);
+        border-radius: 0.6rem;
+      }
     }
 
     img {
