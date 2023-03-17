@@ -2,31 +2,47 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-bottom: 5.5rem;
+  border-radius: 0.625rem;
+  box-shadow: inset 0 0 15px 0 rgb(30, 29, 29);
+
+  max-height: 37vh;
+  overflow-y: scroll;
 
   @media screen and (min-width: 60rem) {
-    padding: 5.5rem 0 6rem;
+    padding: 0rem 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    overflow-y: scroll;
     &::-webkit-scrollbar {
       display: none;
     }
-    height: 100vh;
+    max-height: unset;
+
+    height: 84vh;
   }
 
   .track {
     display: flex;
     align-items: center;
-    padding: 0.3125rem 2.5rem;
+    padding: 0.3125rem 0.5rem;
     border-bottom: 0.125rem solid var(--separator);
     transition: background 400ms ease-in-out;
-    background-color: var(--body-bg);
 
     &:hover,
     &:focus-visible {
       background: var(--playing);
       cursor: pointer;
+    }
+
+    &:first-child {
+      border-top-right-radius: 0.625rem;
+      border-top-left-radius: 0.625rem;
+
+      &.playing {
+        border-top-left-radius: 0.3125rem;
+        &::after {
+          border-top-left-radius: 0.625rem;
+        }
+      }
     }
 
     &.playing {

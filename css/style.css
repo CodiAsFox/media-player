@@ -6,6 +6,7 @@
   --body-bg: #2d2d2d;
   --player: #3d3d3d;
   --separator: #443c3c;
+  --progress-indicator: #262626;
   --primary-colour: #5f86f2;
   --secondary-colour: #a65ff2;
   --third-colour: #f25fd0;
@@ -39,7 +40,6 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   margin: 0;
   background-color: var(--body-bg);
@@ -228,8 +228,8 @@ h6 {
   color: var(--light);
   background: none;
   padding: 0.9375rem;
-  border: 0.0625rem solid var(--light);
   border-radius: 50%;
+  border: none;
   line-height: 1;
   height: -moz-fit-content;
   height: fit-content;
@@ -296,26 +296,23 @@ h6 {
 }
 
 header {
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+}
+@media screen and (min-width: 60rem) {
+  header {
+    position: relative;
+    z-index: initial;
+  }
 }
 
 .main-nav {
   background-color: var(--body-bg);
-  position: absolute;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  padding: 0.305rem 0 0.95rem;
+  padding: 0.305rem 0 1.45rem;
   z-index: 1;
-  background: rgba(61, 61, 61, 0.7);
-  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(0.7063rem);
-  -webkit-backdrop-filter: blur(0.7063rem);
-  border: 0.0625rem solid rgba(61, 61, 61, 0.84);
-  position: absolute;
-  left: 0;
-  top: 0;
   display: flex;
   align-items: center;
 }
@@ -349,20 +346,30 @@ header {
   padding-right: 0.625rem;
 }
 
+.player--main {
+  margin: 5.5rem 1.3rem 0;
+}
 @media screen and (min-width: 60rem) {
   .player--main {
     display: flex;
-    height: 100vh;
+    height: 84vh;
+    margin: 0 1.3rem;
   }
 }
 .player--current {
-  background-color: var(--dark);
+  background-color: var(--body-bg);
   align-content: center;
   position: relative;
   background-repeat: repeat;
   background-position: 0 0;
   background-repeat: repeat;
   background-position: 0 0;
+  border-radius: 0.625rem;
+}
+@media screen and (min-width: 60rem) {
+  .player--current {
+    margin-right: 1.3rem;
+  }
 }
 .player--current.playing {
   animation: bg-scrolling 45s infinite alternate;
@@ -371,7 +378,7 @@ header {
   z-index: 1;
   max-width: 20rem;
   margin: auto;
-  padding-top: 7rem;
+  padding-top: 5rem;
   align-items: center;
   flex-direction: column;
 }
@@ -404,20 +411,34 @@ header {
 .player--current .inner {
   display: flex;
 }
-.player--current::before {
+.player--current .inner::before {
   content: "";
   width: 100%;
   height: 100%;
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 0;
   background: rgba(51, 51, 51, 0.45);
   box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(0.9125rem);
   -webkit-backdrop-filter: blur(0.9125rem);
+  border-radius: 0.6rem;
+}
+.player--current .img--container {
+  width: 45vw;
+  height: 45vw;
+}
+@media screen and (min-width: 60rem) {
+  .player--current .img--container {
+    width: unset;
+    height: unset;
+  }
 }
 .player--current img {
   box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2.25rem 0, rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
   margin: auto;
+  border-radius: 0.625rem;
 }
 @media screen and (min-width: 60rem) {
   .player--current img {
@@ -431,6 +452,12 @@ header {
 }
 .player--playlist {
   position: relative;
+  margin-top: 2rem;
+}
+@media screen and (min-width: 60rem) {
+  .player--playlist {
+    margin-top: 0;
+  }
 }
 .player--playlist .track--time {
   position: relative;
@@ -450,15 +477,18 @@ header {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-bottom: 5.5rem;
+  border-radius: 0.625rem;
+  box-shadow: inset 0 0 15px 0 rgb(30, 29, 29);
+  max-height: 37vh;
+  overflow-y: scroll;
 }
 @media screen and (min-width: 60rem) {
   .music-list {
-    padding: 5.5rem 0 6rem;
+    padding: 0rem 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    overflow-y: scroll;
-    height: 100vh;
+    max-height: unset;
+    height: 84vh;
   }
   .music-list::-webkit-scrollbar {
     display: none;
@@ -467,14 +497,23 @@ header {
 .music-list .track {
   display: flex;
   align-items: center;
-  padding: 0.3125rem 2.5rem;
+  padding: 0.3125rem 0.5rem;
   border-bottom: 0.125rem solid var(--separator);
   transition: background 400ms ease-in-out;
-  background-color: var(--body-bg);
 }
 .music-list .track:hover, .music-list .track:focus-visible {
   background: var(--playing);
   cursor: pointer;
+}
+.music-list .track:first-child {
+  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+}
+.music-list .track:first-child.playing {
+  border-top-left-radius: 0.3125rem;
+}
+.music-list .track:first-child.playing::after {
+  border-top-left-radius: 0.625rem;
 }
 .music-list .track.playing {
   background-color: var(--playing);
@@ -741,42 +780,40 @@ header {
 }
 
 .progress {
-  background: var(--progress);
-  width: 0%;
-  height: 0.1875rem;
+  width: 100%;
+  height: 0.28rem;
   position: absolute;
-  top: -0.125rem;
+  top: 5px;
   left: 0;
-  transition: width 200ms ease;
+  background: var(--progress-indicator);
 }
-.progress .played::after {
-  content: "";
-  width: 0.625rem;
-  height: 0.625rem;
-  background-color: var(--progress);
-  display: inline-block;
-  position: absolute;
-  right: -0.125rem;
-  top: -0.25rem;
-  border-radius: 50%;
+.progress .played {
+  background: var(--progress);
+  transition: width 200ms ease;
+  width: 0%;
+  height: 100%;
+  border-top-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
 }
 
 .player-footer {
-  position: fixed;
   width: 100%;
-  background-color: var(--light);
+  background-color: var(--body-bg);
   bottom: 0;
   left: 0;
-  transition: transform 1200ms ease-in-out;
-  transform: translateY(10rem);
-  background: rgba(61, 61, 61, 0.7);
-  box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(0.7063rem);
-  -webkit-backdrop-filter: blur(0.7063rem);
-  border: 0.0625rem solid rgba(61, 61, 61, 0.84);
+  position: fixed;
+  margin-top: 0.75rem;
 }
-.player-footer.active {
-  transform: translateY(0);
+.player-footer .controls {
+  opacity: 0;
+  transition: opacity 1200ms ease-in-out;
+}
+.player-footer .times {
+  display: flex;
+  align-items: center;
+}
+.player-footer.active .controls {
+  opacity: 1;
 }
 .player-footer .footer-container {
   padding: 1.25rem 2.5rem;

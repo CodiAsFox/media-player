@@ -1,15 +1,27 @@
 .player-footer {
-  position: fixed;
   width: 100%;
-  background-color: var(--light);
+  background-color: var(--body-bg);
   bottom: 0;
   left: 0;
-  transition: transform 1200ms ease-in-out;
-  transform: translateY(10rem);
-  @include glassBackgrounds;
+  position: fixed;
+  margin-top: 0.75rem;
+
+  // position: ;
+
+  .controls {
+    opacity: 0;
+    transition: opacity 1200ms ease-in-out;
+  }
+
+  .times {
+    display: flex;
+    align-items: center;
+  }
 
   &.active {
-    transform: translateY(0);
+    .controls {
+      opacity: 1;
+    }
   }
 
   .footer-container {
