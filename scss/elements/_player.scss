@@ -1,10 +1,11 @@
 .player {
   &--main {
+    margin: 5.5rem 1.3rem 0;
     @media screen and (min-width: 60rem) {
       display: flex;
       height: 84vh;
+      margin: 0 1.3rem;
     }
-    margin: 0 1.3rem;
   }
 
   &--current {
@@ -16,11 +17,10 @@
     background-repeat: repeat;
     background-position: 0 0;
 
-    // border: 1.25rem solid var(--body-bg);
-
-    margin-right: 1.3rem;
-    border-radius: 10px;
-    // padding-right: 16px;
+    @media screen and (min-width: 60rem) {
+      margin-right: 1.3rem;
+    }
+    border-radius: 0.625rem;
 
     &.playing {
       animation: bg-scrolling 45s infinite alternate;
@@ -30,7 +30,7 @@
       z-index: 1;
       max-width: 20rem;
       margin: auto;
-      padding-top: 7rem;
+      padding-top: 5rem;
       align-items: center;
       flex-direction: column;
 
@@ -79,10 +79,21 @@
       }
     }
 
+    .img--container {
+      width: 45vw;
+      height: 45vw;
+      @media screen and (min-width: 60rem) {
+        width: unset;
+        height: unset;
+      }
+    }
+
     img {
       box-shadow: transparentize($black, 0.84) 0 0.625rem 2.25rem 0,
         transparentize($black, 0.94) 0 0 0 0.0625rem;
       margin: auto;
+
+      border-radius: 0.625rem;
 
       @media screen and (min-width: 60rem) {
         max-width: 25rem;
@@ -96,6 +107,10 @@
 
   &--playlist {
     position: relative;
+    margin-top: 2rem;
+    @media screen and (min-width: 60rem) {
+      margin-top: 0;
+    }
 
     .track--time {
       position: relative;

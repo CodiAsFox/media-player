@@ -1,5 +1,12 @@
 header {
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  @media screen and (min-width: 60rem) {
+    position: relative;
+    z-index: initial;
+  }
 }
 .main-nav {
   background-color: var(--body-bg);

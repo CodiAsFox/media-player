@@ -10,7 +10,7 @@ const APP = {
     APP.playerControls = document.getElementById("player-controls");
     APP.totalTime = document.querySelector(".times .total-time");
     APP.currentTime = document.querySelector(".times .current-time");
-    APP.progress = document.querySelector(".progress");
+    APP.progress = document.querySelector(".progress .played");
     APP.btnPlayPause = document.getElementById("btnPlayPause");
     APP.btnShuffle = document.getElementById("btnShuffle");
 
@@ -39,9 +39,11 @@ const APP = {
     window.addEventListener("error", errorHandler);
     APP.audio.addEventListener("error", audioErrorHandler);
     APP.audio.addEventListener("loadeddata", APP.loadDuration);
+    APP.audio.addEventListener("ended", APP.next);
     APP.audio.addEventListener("timeupdate", APP.updateTimestamp);
     APP.playlist.addEventListener("click", APP.playSelected);
     APP.playerControls.addEventListener("click", APP.controls);
+    APP.btnShuffle.addEventListener("click", APP.shuffle);
   },
   loadDuration: () => {
     let duration = APP.audio.duration;
@@ -54,8 +56,7 @@ const APP = {
     if (duration && currentTime) APP.playProgress(duration, currentTime);
   },
   playSelected: (ev) => {
-    const playing = APP.playlist.querySelector(".playing");
-    if (playing) playing.classList.remove("playing");
+    APP.removePlaying();
 
     const track = ev.target.closest(".track");
     APP.currentTrack = track.dataset.track;
@@ -63,6 +64,23 @@ const APP = {
     APP.play();
 
     track.classList.contains("playing");
+  },
+  removePlaying: () => {
+    const playing = APP.playlist.querySelector(".playing");
+    if (playing) playing.classList.remove("playing");
+  },
+  shuffle: () => {
+    const newTrack = Math.floor(Math.random() * MEDIA.length);
+
+    if (APP.currentTrack == newTrack) {
+      APP.shuffle();
+      return false;
+    }
+
+    APP.currentTrack = newTrack;
+    APP.removePlaying();
+    APP.loadCurrentTrack();
+    APP.play();
   },
   buildPlaylist: () => {
     const playlist = MEDIA.map((obj, index) => {
@@ -120,16 +138,21 @@ const APP = {
 
     APP.playerControls.classList.add("active");
     APP.btnPlayPause.disabled = false;
+
+    // if (window.innerWidth > 959) {
     APP.playlist
       .querySelector(`[data-track="${APP.currentTrack}"]`)
-      .scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "start",
+      });
+    // }
   },
   controls: (ev) => {
     const btn = ev.target.closest(".btn");
     if (btn) {
       const action = btn.dataset.action;
-      const playing = APP.playlist.querySelector(".playing");
-      playing.classList.remove("playing");
 
       switch (action) {
         case "play":
@@ -156,12 +179,12 @@ const APP = {
   },
   pause: () => {
     APP.audio.pause();
-
     APP.btnPlayPause.title = "Play";
     APP.btnPlayPause.dataset.action = "play";
     APP.btnPlayPause.querySelector("i").innerHTML = "play_arrow";
   },
   previous: () => {
+    APP.removePlaying();
     if (APP.currentTrack == 0) {
       APP.currentTrack = MEDIA.length - 1;
     } else {
@@ -172,6 +195,7 @@ const APP = {
     APP.play();
   },
   next: () => {
+    APP.removePlaying();
     if (APP.currentTrack == MEDIA.length - 1) {
       APP.currentTrack = 0;
     } else {

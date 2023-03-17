@@ -3,7 +3,10 @@
   background-color: var(--body-bg);
   bottom: 0;
   left: 0;
-  position: relative;
+  position: fixed;
+  margin-top: 0.75rem;
+
+  // position: ;
 
   .controls {
     opacity: 0;

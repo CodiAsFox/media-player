@@ -8,6 +8,7 @@ $player: #3d3d3d;
 $accent: #7b4b91;
 $text: #f6f6f6;
 $playing: #1e1e1e;
+$progressInd: #262626;
 $progress: rgb(233, 233, 233);
 $colour-primary: rgb(147, 15, 224);
 $colour-primary-dark: rgb(95, 11, 143);
@@ -46,6 +47,7 @@ $colours: (
   "body-bg": $body-bg,
   "player": $player,
   "separator": $separator,
+  "progress-indicator": $progressInd,
   "primary-colour": $primary-colour,
   "secondary-colour": $secondary-colour,
   "third-colour": $third-colour,

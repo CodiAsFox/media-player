@@ -6,6 +6,7 @@
   --body-bg: #2d2d2d;
   --player: #3d3d3d;
   --separator: #443c3c;
+  --progress-indicator: #262626;
   --primary-colour: #5f86f2;
   --secondary-colour: #a65ff2;
   --third-colour: #f25fd0;
@@ -39,7 +40,6 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   margin: 0;
   background-color: var(--body-bg);
@@ -228,6 +228,7 @@ h6 {
   color: var(--light);
   background: none;
   padding: 0.9375rem;
+  border-radius: 50%;
   border: none;
   line-height: 1;
   height: -moz-fit-content;
@@ -295,7 +296,16 @@ h6 {
 }
 
 header {
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+}
+@media screen and (min-width: 60rem) {
+  header {
+    position: relative;
+    z-index: initial;
+  }
 }
 
 .main-nav {
@@ -337,12 +347,13 @@ header {
 }
 
 .player--main {
-  margin: 0 1.3rem;
+  margin: 5.5rem 1.3rem 0;
 }
 @media screen and (min-width: 60rem) {
   .player--main {
     display: flex;
     height: 84vh;
+    margin: 0 1.3rem;
   }
 }
 .player--current {
@@ -353,8 +364,12 @@ header {
   background-position: 0 0;
   background-repeat: repeat;
   background-position: 0 0;
-  margin-right: 1.3rem;
-  border-radius: 10px;
+  border-radius: 0.625rem;
+}
+@media screen and (min-width: 60rem) {
+  .player--current {
+    margin-right: 1.3rem;
+  }
 }
 .player--current.playing {
   animation: bg-scrolling 45s infinite alternate;
@@ -363,7 +378,7 @@ header {
   z-index: 1;
   max-width: 20rem;
   margin: auto;
-  padding-top: 7rem;
+  padding-top: 5rem;
   align-items: center;
   flex-direction: column;
 }
@@ -410,9 +425,20 @@ header {
   -webkit-backdrop-filter: blur(0.9125rem);
   border-radius: 0.6rem;
 }
+.player--current .img--container {
+  width: 45vw;
+  height: 45vw;
+}
+@media screen and (min-width: 60rem) {
+  .player--current .img--container {
+    width: unset;
+    height: unset;
+  }
+}
 .player--current img {
   box-shadow: rgba(0, 0, 0, 0.16) 0 0.625rem 2.25rem 0, rgba(0, 0, 0, 0.06) 0 0 0 0.0625rem;
   margin: auto;
+  border-radius: 0.625rem;
 }
 @media screen and (min-width: 60rem) {
   .player--current img {
@@ -426,6 +452,12 @@ header {
 }
 .player--playlist {
   position: relative;
+  margin-top: 2rem;
+}
+@media screen and (min-width: 60rem) {
+  .player--playlist {
+    margin-top: 0;
+  }
 }
 .player--playlist .track--time {
   position: relative;
@@ -445,16 +477,17 @@ header {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  padding-bottom: 5.5rem;
-  border-radius: 10px;
-  box-shadow: inset 0 0 15px 0 #1e1d1d;
+  border-radius: 0.625rem;
+  box-shadow: inset 0 0 15px 0 rgb(30, 29, 29);
+  max-height: 37vh;
+  overflow-y: scroll;
 }
 @media screen and (min-width: 60rem) {
   .music-list {
     padding: 0rem 0;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    overflow-y: scroll;
+    max-height: unset;
     height: 84vh;
   }
   .music-list::-webkit-scrollbar {
@@ -464,13 +497,23 @@ header {
 .music-list .track {
   display: flex;
   align-items: center;
-  padding: 0.3125rem 2.5rem;
+  padding: 0.3125rem 0.5rem;
   border-bottom: 0.125rem solid var(--separator);
   transition: background 400ms ease-in-out;
 }
 .music-list .track:hover, .music-list .track:focus-visible {
   background: var(--playing);
   cursor: pointer;
+}
+.music-list .track:first-child {
+  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+}
+.music-list .track:first-child.playing {
+  border-top-left-radius: 0.3125rem;
+}
+.music-list .track:first-child.playing::after {
+  border-top-left-radius: 0.625rem;
 }
 .music-list .track.playing {
   background-color: var(--playing);
@@ -737,24 +780,20 @@ header {
 }
 
 .progress {
-  background: var(--progress);
-  width: 0%;
+  width: 100%;
   height: 0.28rem;
   position: absolute;
   top: 5px;
   left: 0;
-  transition: width 200ms ease;
+  background: var(--progress-indicator);
 }
-.progress .played::after {
-  content: "";
-  width: 0.625rem;
-  height: 0.625rem;
-  background-color: var(--progress);
-  display: inline-block;
-  position: absolute;
-  right: -0.125rem;
-  top: -0.25rem;
-  border-radius: 50%;
+.progress .played {
+  background: var(--progress);
+  transition: width 200ms ease;
+  width: 0%;
+  height: 100%;
+  border-top-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
 }
 
 .player-footer {
@@ -762,7 +801,8 @@ header {
   background-color: var(--body-bg);
   bottom: 0;
   left: 0;
-  position: relative;
+  position: fixed;
+  margin-top: 0.75rem;
 }
 .player-footer .controls {
   opacity: 0;

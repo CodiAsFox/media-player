@@ -1,4 +1,11 @@
 const MEDIA = [
+  // {
+  //   artist: "Test",
+  //   title: "test",
+  //   track: "test.mp3",
+  //   thumbnail: "test-w100.png",
+  //   large: "test-w800.png",
+  // },
   {
     artist: "Pink",
     title: "TRUSTFALL",
@@ -71,7 +78,6 @@ const MEDIA = [
     large: "mr-fear-w800.jpg",
     banner: "mr-fear-banner.jpg",
   },
-
   {
     artist: "Serena Ryder",
     title: "Stompa",
