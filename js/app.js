@@ -1,5 +1,4 @@
 import MEDIA from "./media.js";
-
 const APP = {
   audio: new Audio(),
   currentTrack: 0,
@@ -71,12 +70,10 @@ const APP = {
   },
   shuffle: () => {
     const newTrack = Math.floor(Math.random() * MEDIA.length);
-
     if (APP.currentTrack == newTrack) {
       APP.shuffle();
       return false;
     }
-
     APP.currentTrack = newTrack;
     APP.removePlaying();
     APP.loadCurrentTrack();
