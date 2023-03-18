@@ -5,7 +5,7 @@
   border-radius: 0.625rem;
   box-shadow: inset 0 0 15px 0 rgb(30, 29, 29);
 
-  max-height: 37vh;
+  max-height: 47vh;
   overflow-y: scroll;
 
   @media screen and (min-width: 60rem) {
@@ -17,7 +17,7 @@
     }
     max-height: unset;
 
-    height: 84vh;
+    height: 82vh;
   }
 
   .track {
@@ -123,8 +123,13 @@
 
       &thumb {
         img {
-          width: 6.25rem;
-          height: 6.25rem;
+          width: 4.25rem;
+          height: 4.25rem;
+
+          @media screen and (min-width: 60rem) {
+            width: 6.25rem;
+            height: 6.25rem;
+          }
         }
       }
     }

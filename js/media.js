@@ -15,12 +15,12 @@ const MEDIA = [
     banner: "trustfall-banner.jpg",
   },
   {
-    artist: "Pink",
-    title: "Never Gonna Not Dance Again",
-    track: "never-gonna-not-dance-again.mp3",
-    thumbnail: "trustfall-w100.jpg",
-    large: "trustfall-w800.jpg",
-    banner: "trustfall-banner.jpg",
+    artist: "SIAMES",
+    title: "Mr. Fear",
+    track: "mr-fear.mp3",
+    thumbnail: "mr-fear-w100.jpg",
+    large: "mr-fear-w800.jpg",
+    banner: "mr-fear-banner.jpg",
   },
   {
     artist: "Selena Gomez & Marshmello",
@@ -37,6 +37,14 @@ const MEDIA = [
     thumbnail: "moulin-rouge-w100.jpg",
     large: "moulin-rouge-w800.jpg",
     banner: "moulin-rouge-banner.jpg",
+  },
+  {
+    artist: "Pink",
+    title: "Never Gonna Not Dance Again",
+    track: "never-gonna-not-dance-again.mp3",
+    thumbnail: "trustfall-w100.jpg",
+    large: "trustfall-w800.jpg",
+    banner: "trustfall-banner.jpg",
   },
   {
     artist: "Of Monsters and Men",
@@ -70,14 +78,7 @@ const MEDIA = [
     large: "happy-music-w800.jpg",
     banner: "happy-music-banner.jpg",
   },
-  {
-    artist: "SIAMES",
-    title: "Mr. Fear",
-    track: "mr-fear.mp3",
-    thumbnail: "mr-fear-w100.jpg",
-    large: "mr-fear-w800.jpg",
-    banner: "mr-fear-banner.jpg",
-  },
+
   {
     artist: "Serena Ryder",
     title: "Stompa",

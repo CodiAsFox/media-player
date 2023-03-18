@@ -21,8 +21,11 @@
   }
 
   &-shuffle {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
     z-index: 1;
+
+    @media screen and (min-width: 60rem) {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
   }
 }
