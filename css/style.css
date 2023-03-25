@@ -6,6 +6,7 @@
   --body-bg: #2d2d2d;
   --player: #3d3d3d;
   --separator: #443c3c;
+  --played: rgba(75, 89, 182, 0.305);
   --progress-indicator: #262626;
   --primary-colour: #5f86f2;
   --secondary-colour: #a65ff2;
@@ -320,6 +321,16 @@ header {
   display: flex;
   align-items: center;
 }
+.main-nav.playing::before {
+  content: "";
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(60deg, rgba(95, 134, 242, 0.755), rgba(166, 95, 242, 0.755), rgba(242, 95, 208, 0.755));
+  animation: playing-music 3s alternate infinite ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .main-nav .logo {
   color: var(--light);
   font-weight: 600;
@@ -356,7 +367,7 @@ header {
 @media screen and (min-width: 60rem) {
   .player--main {
     display: flex;
-    height: 82vh;
+    height: 80vh;
     margin: 0 1.3rem;
   }
 }
@@ -377,6 +388,9 @@ header {
 }
 .player--current.playing {
   animation: bg-scrolling 45s infinite alternate;
+}
+.player--current.playing .inner::before {
+  background: rgba(51, 51, 51, 0.45);
 }
 .player--current .inner {
   z-index: 1;
@@ -423,7 +437,8 @@ header {
   top: 0;
   left: 0;
   z-index: 0;
-  background: rgba(51, 51, 51, 0.45);
+  transition: background 800ms ease-in-out;
+  background: #333;
   box-shadow: 0 0.25rem 1.875rem rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(0.9125rem);
   -webkit-backdrop-filter: blur(0.9125rem);
@@ -482,7 +497,7 @@ header {
     -ms-overflow-style: none;
     scrollbar-width: none;
     max-height: unset;
-    height: 82vh;
+    height: 80vh;
   }
   .music-list::-webkit-scrollbar {
     display: none;
@@ -618,13 +633,27 @@ header {
 }
 
 @keyframes border-gradient {
-  50% {
+  20% {
+    background-position: 100% 10%;
+  }
+  40% {
+    background-position: 100% 30%;
+  }
+  60% {
     background-position: 100% 50%;
+  }
+  70% {
+    background-position: 100% 70%;
   }
 }
 @keyframes bg-scrolling {
   0% {
     background-position: 150rem 107rem;
+  }
+}
+@keyframes playing-music {
+  0% {
+    background-position: 10rem 50rem;
   }
 }
 @keyframes marquee {
@@ -781,15 +810,16 @@ header {
 
 .progress {
   width: 100%;
-  height: 0.28rem;
+  height: 10px;
   position: absolute;
   top: 5px;
   left: 0;
   background: var(--progress-indicator);
+  cursor: pointer;
 }
 .progress .played {
   background: var(--progress);
-  transition: width 200ms ease;
+  transition: width 400ms ease;
   width: 0%;
   height: 100%;
   border-top-right-radius: 0.3125rem;

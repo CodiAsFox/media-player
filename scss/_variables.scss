@@ -18,8 +18,17 @@ $secondary-colour: #a65ff2;
 $third-colour: #f25fd0;
 $forth-colour: #5ff2f0;
 
+$played: rgba(75, 89, 182, 0.305);
+
 $error: #9f2e2e;
 $warning: #a49f57;
+
+$linear-bg-nav: linear-gradient(
+  60deg,
+  transparentize($primary-colour, 0.245),
+  transparentize($secondary-colour, 0.245),
+  transparentize($third-colour, 0.245)
+);
 
 $linear-bg: linear-gradient(
   60deg,
@@ -47,6 +56,7 @@ $colours: (
   "body-bg": $body-bg,
   "player": $player,
   "separator": $separator,
+  "played": $played,
   "progress-indicator": $progressInd,
   "primary-colour": $primary-colour,
   "secondary-colour": $secondary-colour,

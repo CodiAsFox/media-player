@@ -21,14 +21,32 @@
 }
 
 @keyframes border-gradient {
-  50% {
+  20% {
+    background-position: 100% 10%;
+  }
+
+  40% {
+    background-position: 100% 30%;
+  }
+
+  60% {
     background-position: 100% 50%;
+  }
+
+  70% {
+    background-position: 100% 70%;
   }
 }
 
 @keyframes bg-scrolling {
   0% {
     background-position: 150rem 107rem;
+  }
+}
+
+@keyframes playing-music {
+  0% {
+    background-position: 10rem 50rem;
   }
 }
 
