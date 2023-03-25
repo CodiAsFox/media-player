@@ -4,6 +4,7 @@ const APP = {
   currentTrack: 0,
   appName: "madTunes",
   init: () => {
+    APP.navbar = document.querySelector(".main-nav");
     APP.playerView = document.getElementById("playerView");
     APP.playlist = document.getElementById("playlist");
     APP.playerControls = document.getElementById("player-controls");
@@ -14,24 +15,27 @@ const APP = {
     APP.btnShuffle = document.getElementById("btnShuffle");
 
     try {
-      const setlist = APP.buildPlaylist();
-      if (setlist.length > 0) {
-        APP.setlist = parseHTML(setlist);
-
-        APP.playlist.innerHTML = APP.setlist.innerHTML;
-        APP.btnShuffle.disabled = false;
-        APP.addListeners();
-        MEDIA.forEach((track, index) => {
-          APP.getTrackDuration(track, index);
-        });
-
-        APP.currentTrack = 0;
-        APP.loadCurrentTrack();
-      } else {
-        throw Error(`The playlist couldn't be generated`);
-      }
+      APP.constructPlayer();
+      APP.addListeners();
+      MEDIA.forEach((track, index) => {
+        APP.getTrackDuration(track, index);
+      });
     } catch {
       throw new Error("The MEDIA.js file couldn't be found.");
+    }
+  },
+  constructPlayer: () => {
+    const setlist = APP.buildPlaylist();
+    if (setlist.length > 0) {
+      APP.setlist = parseHTML(setlist);
+
+      APP.playlist.innerHTML = APP.setlist.innerHTML;
+      APP.btnShuffle.disabled = false;
+
+      APP.currentTrack = 0;
+      APP.loadCurrentTrack();
+    } else {
+      throw Error(`The playlist couldn't be generated`);
     }
   },
   addListeners: () => {
@@ -43,6 +47,17 @@ const APP = {
     APP.playlist.addEventListener("click", APP.playSelected);
     APP.playerControls.addEventListener("click", APP.controls);
     APP.btnShuffle.addEventListener("click", APP.shuffle);
+
+    const progressBar = document.querySelector(".progress");
+
+    progressBar.addEventListener("mousemove", function (ev) {
+      const position = (ev.offsetX * 100) / progressBar.clientWidth;
+      progressBar.style.background = `linear-gradient(90deg, var(--played) 0%, var(--played) ${position}%, var(--progress-indicator) ${position}%, var(--progress-indicator) 100%)`;
+    });
+
+    progressBar.addEventListener("mouseleave", (ev) => {
+      progressBar.style.background = "";
+    });
   },
   loadDuration: () => {
     let duration = APP.audio.duration;
@@ -69,14 +84,13 @@ const APP = {
     if (playing) playing.classList.remove("playing");
   },
   shuffle: () => {
-    const newTrack = Math.floor(Math.random() * MEDIA.length);
-    if (APP.currentTrack == newTrack) {
-      APP.shuffle();
-      return false;
-    }
-    APP.currentTrack = newTrack;
-    APP.removePlaying();
-    APP.loadCurrentTrack();
+    MEDIA.shuffle();
+    APP.constructPlayer();
+
+    MEDIA.forEach((_, index) => {
+      APP.displayTrackDuration(index);
+    });
+
     APP.play();
   },
   buildPlaylist: () => {
@@ -107,12 +121,13 @@ const APP = {
   },
   getTrackDuration: ({ track }, index) => {
     const trackObj = new Audio(`./media/${track}`);
-    trackObj.addEventListener("durationchange", (ev) =>
-      APP.displayTrackDuration(ev, index)
-    );
+    trackObj.addEventListener("durationchange", (ev) => {
+      MEDIA[index]["runtime"] = ev.target.duration;
+      APP.displayTrackDuration(index);
+    });
   },
-  displayTrackDuration: (ev, index) => {
-    const duration = ev.target.duration;
+  displayTrackDuration: (index) => {
+    const duration = MEDIA[index]["runtime"];
     const timeMinutes = APP.convertTimeDisplay(duration);
     const totalTime = `<time datetime="${duration}" class="total-time">${timeMinutes}</time>`;
 
@@ -148,6 +163,13 @@ const APP = {
   },
   controls: (ev) => {
     const btn = ev.target.closest(".btn");
+    const progress = ev.target.closest(".progress");
+    if (progress) {
+      const time = MEDIA[APP.currentTrack]["runtime"];
+      const position = ev.offsetX / progress.clientWidth;
+      APP.audio.currentTime = position * time;
+    }
+
     if (btn) {
       const action = btn.dataset.action;
 
@@ -170,12 +192,15 @@ const APP = {
   play: () => {
     APP.audio.play();
     APP.playerView.classList.add("playing");
+    APP.navbar.classList.add("playing");
     APP.btnPlayPause.title = "Pause";
     APP.btnPlayPause.dataset.action = "pause";
     APP.btnPlayPause.querySelector("i").innerHTML = "pause";
   },
   pause: () => {
     APP.audio.pause();
+    APP.playerView.classList.remove("playing");
+    APP.navbar.classList.remove("playing");
     APP.btnPlayPause.title = "Play";
     APP.btnPlayPause.dataset.action = "play";
     APP.btnPlayPause.querySelector("i").innerHTML = "play_arrow";
@@ -212,7 +237,7 @@ const APP = {
     APP.currentTime.innerHTML = APP.convertTimeDisplay(currentTime);
     APP.currentTime.setAttribute("datetime", currentTime);
     const progress = (currentTime / duration) * 100;
-    APP.progress.style.width = `${progress.toFixed(2)}%`;
+    APP.progress.style.width = `${progress.toFixed(2)}vw`;
   },
 };
 

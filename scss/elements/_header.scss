@@ -15,6 +15,20 @@ header {
   z-index: 1;
   display: flex;
   align-items: center;
+
+  &.playing {
+    &::before {
+      content: "";
+
+      height: 3px;
+      width: 100%;
+      background: $linear-bg-nav;
+      animation: playing-music 3s alternate infinite ease;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
   .logo {
     color: var(--light);
     font-weight: 600;
